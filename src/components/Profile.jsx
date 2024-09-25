@@ -1,61 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { addItinerary, getItineraries } from '../dbService';
-import { useAuth } from '../AuthContext';
+import React from 'react';
+import { useAuth } from '../AuthContext'; // Assuming AuthContext provides user and logout
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const [itinerary, setItinerary] = useState('');
-  const { currentUser } = useAuth();
-  const [savedItineraries, setSavedItineraries] = useState([]);
-  const [message, setMessage] = useState('');
+  const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSaveItinerary = async () => {
+  const handleLogout = async () => {
     try {
-      await addItinerary({
-        userId: currentUser.uid,
-        itinerary,
-      });
-      setMessage('Itinerary saved successfully!');
-      fetchItineraries(); // Fetch the updated itineraries
+      await logout();
+      navigate('/login');
     } catch (error) {
-      console.error(error);
-      setMessage('Failed to save itinerary');
+      console.error('Failed to log out:', error);
     }
   };
 
-  const fetchItineraries = async () => {
-    const itineraries = await getItineraries();
-    setSavedItineraries(itineraries.filter(i => i.userId === currentUser.uid));
-  };
-
-  useEffect(() => {
-    fetchItineraries();
-  }, []);
-
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl mb-6">Welcome, {currentUser.email}</h1>
-      <textarea
-        value={itinerary}
-        onChange={(e) => setItinerary(e.target.value)}
-        placeholder="Enter your itinerary details..."
-        className="border rounded-lg p-2 w-80 h-40 mb-4"
-      />
-      <button onClick={handleSaveItinerary} className="bg-blue-600 text-white p-2 rounded-lg w-80">
-        Save Itinerary
-      </button>
-      {message && <p className="mt-4">{message}</p>}
-      <h2 className="text-2xl mt-6">Your Saved Itineraries</h2>
-      <ul className="mt-4 space-y-2">
-        {savedItineraries.map((itinerary, index) => (
-          <li key={index} className="border p-2 rounded-lg w-80">
-            {itinerary.itinerary}
-          </li>
-        ))}
-      </ul>
+    <div className="h-screen flex flex-col items-center justify-center bg-gray-100">
+      <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+        <h1 className="text-2xl font-bold mb-4">Your Profile</h1>
+        <p className="mb-4">Welcome, {currentUser?.email}</p>
+        <button 
+          onClick={handleLogout}
+          className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300">
+          Logout
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Profile;
-
-

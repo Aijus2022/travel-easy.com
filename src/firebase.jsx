@@ -1,18 +1,22 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+// Import Firebase SDK
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
+// Your Firebase configuration object
 const firebaseConfig = {
-  apiKey: "AIzaSyDwITpGd6r2y7mkZGAUq3XT6cRRCFQzFrg",
-  authDomain: "travel-easy-3fe53.firebaseapp.com",
-  projectId: "travel-easy-3fe53",
-  storageBucket: "travel-easy-3fe53.appspot.com",
-  messagingSenderId: "49424510989",
-  appId: "1:49424510989:web:abeb1911a81efcd446e544",
-  measurementId: "G-THBCRFBQ84" // Optional for analytics
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase services
 const auth = getAuth(app);
 const db = getFirestore(app);
 
