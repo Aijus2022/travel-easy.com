@@ -3,13 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "Index.jsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "netlify deploy --prod --dir=dist",
-    "postbuild": "npm run deploy"
+    "postbuild": "npm run deploy",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "amadeus": "^10.1.0",
@@ -37,5 +38,15 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.1"
-  }
+  },
+  "description": "travel-app",
+  "repository": {
+    "type": "git",
+    "url": "n"
+  },
+  "keywords": [
+    "travel"
+  ],
+  "author": "Aijamal Jusupova",
+  "license": "ISC"
 }
