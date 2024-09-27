@@ -15,7 +15,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'  # Update to a compatible Node.js version
+        node-version: '21'  # Update to a compatible Node.js version
 
     - name: Install dependencies
       run: npm install
