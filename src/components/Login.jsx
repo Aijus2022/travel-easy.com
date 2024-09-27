@@ -1,19 +1,20 @@
+// src/components/Login.jsx
 import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';
-import { useNavigate } from 'react-router-dom';
+// Remove the incorrect default import and use named imports
+import { db, app } from '../firebase';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login } = useAuth();
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Use login logic with firebase here if needed
       await login(email, password);
-      navigate('/profile'); // Navigate to the profile page after login
     } catch (error) {
       setError('Failed to log in');
       console.error(error);
@@ -21,27 +22,23 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl mb-6">Login</h1>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div>
+      <h1>Login</h1>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
-          placeholder="Email"
-          className="border rounded-lg p-2 w-80"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
         />
         <input
           type="password"
-          placeholder="Password"
-          className="border rounded-lg p-2 w-80"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
-        <button className="bg-blue-600 text-white p-2 rounded-lg w-80">
-          Log In
-        </button>
+        <button type="submit">Log In</button>
       </form>
     </div>
   );

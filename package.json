@@ -3,14 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "Index.jsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postbuild": "npm run deploy",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
+    "amadeus": "^10.1.0",
+    "axios": "^1.7.7",
+    "cli": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
     "firebase": "^10.13.2",
+    "netlify": "^13.1.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2"
@@ -29,5 +38,15 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.1"
-  }
+  },
+  "description": "travel-app",
+  "repository": {
+    "type": "git",
+    "url": "n"
+  },
+  "keywords": [
+    "travel"
+  ],
+  "author": "Aijamal Jusupova",
+  "license": "ISC"
 }

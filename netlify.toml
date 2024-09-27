@@ -1,0 +1,7 @@
+ publish = "dist"
+
+[[redirects]]
+  # Redirect from the root path to the index.html page
+  from = "/*"
+  to = "/index.html"
+  status = 200

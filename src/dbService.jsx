@@ -38,7 +38,7 @@ export async function deleteItineraryStep(id) {
   const itineraryDoc = doc(db, 'itineraries', id);
   await deleteDoc(itineraryDoc);
 }
-
+export default db;
 
 
 
